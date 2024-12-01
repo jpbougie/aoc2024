@@ -1,0 +1,13 @@
+[package]
+name = "aoc2024"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+#members = ["crates/*"]
+
+[workspace.dependencies]
+
+[[bin]]
+name = "01"
+path = "days/01.rs"
