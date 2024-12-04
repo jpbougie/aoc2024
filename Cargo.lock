@@ -15,8 +15,13 @@ dependencies = [
 name = "aoc2024"
 version = "0.1.0"
 dependencies = [
+ "grid",
  "regex",
 ]
+
+[[package]]
+name = "grid"
+version = "0.1.0"
 
 [[package]]
 name = "memchr"

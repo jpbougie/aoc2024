@@ -4,9 +4,15 @@ version = "0.1.0"
 edition = "2021"
 
 [workspace]
-#members = ["crates/*"]
+members = ["crates/*"]
 
 [workspace.dependencies]
+regex = "1.11.1"
+grid = { path = "crates/grid" }
+
+[dependencies]
+regex = { workspace = true }
+grid = { workspace = true }
 
 [[bin]]
 name = "01"
@@ -20,5 +26,6 @@ path = "days/02.rs"
 name = "03"
 path = "days/03.rs"
 
-[dependencies]
-regex = "1.11.1"
+[[bin]]
+name = "04"
+path = "days/04.rs"
