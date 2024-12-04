@@ -15,3 +15,10 @@ path = "days/01.rs"
 [[bin]]
 name = "02"
 path = "days/02.rs"
+
+[[bin]]
+name = "03"
+path = "days/03.rs"
+
+[dependencies]
+regex = "1.11.1"
