@@ -25,12 +25,20 @@ impl<T: Clone> Grid<T> {
             .map(|val| Cell { row, col, val })
     }
 
+    pub fn set(&mut self, row: usize, col: usize, val: T) {
+        if let Some(row) = self.grid.get_mut(row) {
+            row[col] = val;
+        } else {
+            panic!("Row out of bounds");
+        }
+    }
+
     pub fn row_count(&self) -> usize {
         self.grid.len()
     }
 
     pub fn col_count(&self) -> usize {
-        self.grid.get(0).map(|r| r.len()).unwrap_or_default()
+        self.grid.first().map(|r| r.len()).unwrap_or_default()
     }
 
     pub fn iter_cells(&self) -> impl Iterator<Item = Cell<T>> {
