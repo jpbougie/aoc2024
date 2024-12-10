@@ -48,6 +48,28 @@ impl<T: Clone> Grid<T> {
             grid: self,
         }
     }
+
+    pub fn straight_neighbours(&self, row: usize, col: usize) -> Vec<(usize, usize)> {
+        let mut res = Vec::with_capacity(4);
+
+        if row > 0 {
+            res.push((row - 1, col));
+        }
+
+        if col > 0 {
+            res.push((row, col - 1));
+        }
+
+        if row < self.row_count() - 1 {
+            res.push((row + 1, col));
+        }
+
+        if col < self.col_count() - 1 {
+            res.push((row, col + 1))
+        }
+
+        res
+    }
 }
 
 struct GridIterator<'a, T: Clone> {
