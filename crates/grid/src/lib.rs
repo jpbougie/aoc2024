@@ -1,9 +1,10 @@
-#[derive(Clone)]
-pub struct Grid<T: Clone> {
+use std::fmt::Display;
+
+pub struct Grid<T> {
     grid: Vec<Vec<T>>,
 }
 
-impl<T: Clone> Grid<T> {
+impl<T> Grid<T> {
     pub fn new() -> Self {
         Self { grid: Vec::new() }
     }
@@ -72,13 +73,13 @@ impl<T: Clone> Grid<T> {
     }
 }
 
-struct GridIterator<'a, T: Clone> {
+struct GridIterator<'a, T> {
     r: usize,
     c: usize,
     grid: &'a Grid<T>,
 }
 
-impl<'a, T: Clone> Iterator for GridIterator<'a, T> {
+impl<'a, T> Iterator for GridIterator<'a, T> {
     type Item = Cell<'a, T>;
 
     fn next(&mut self) -> Option<Self::Item> {
@@ -99,9 +100,36 @@ impl<'a, T: Clone> Iterator for GridIterator<'a, T> {
     }
 }
 
-impl<T: Clone> Default for Grid<T> {
+impl<T> Default for Grid<T> {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+impl<T> Clone for Grid<T>
+where
+    T: Clone,
+{
+    fn clone(&self) -> Self {
+        Self {
+            grid: self.grid.clone(),
+        }
+    }
+}
+
+impl<T> Display for Grid<T>
+where
+    T: Display,
+{
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        for row in self.grid.iter() {
+            for cell in row.iter() {
+                write!(f, "{}", cell)?;
+            }
+            writeln!(f)?;
+        }
+
+        Ok(())
     }
 }
 
