@@ -1,4 +1,4 @@
-use std::fmt::Display;
+use std::fmt::{Debug, Display};
 
 pub struct Grid<T> {
     grid: Vec<Vec<T>>,
@@ -130,6 +130,15 @@ where
         }
 
         Ok(())
+    }
+}
+
+impl<T> Debug for Grid<T>
+where
+    T: Debug,
+{
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("Grid").field("grid", &self.grid).finish()
     }
 }
 
